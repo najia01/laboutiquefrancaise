@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+use function PHPUnit\Framework\throwException;
+
 class LoginController extends AbstractController
 {
     #[Route('/connexion', name: 'app_login')]
@@ -24,5 +26,11 @@ class LoginController extends AbstractController
             'error' => $error,
             'last_username' => $lastUsername,
         ]);
+    }
+
+    #[Route('/deconnexion', name: 'app_logout',methods:['GET'])]
+    public function logout():never{
+
+        throw new \Exception();
     }
 }
