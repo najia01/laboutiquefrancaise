@@ -30,15 +30,14 @@
 							<li class="nav-item">
 								<a class="nav-link active" aria-current="page" href="{{ path('app_home')}}">Accueil</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Link</a>
+
+							{% for category in allCategories %}
+								<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_category', { slug : category.slug })}}">{{ category.name }}</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Link</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Link</a>
-							</li>
+							{% endfor %}
+							
+							
 						</ul>
 						<div class="speed-menu">
 
@@ -56,7 +55,7 @@
 							{% endif %}
 
 
-							<a href="">
+							<a href="{{ path ('app_cart')}}">
 								<i data-feather="shopping-cart"></i>
 							</a>
 						</div>

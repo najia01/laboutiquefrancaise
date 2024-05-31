@@ -14,11 +14,12 @@
 		<div class="row">
 			{% for product in category.products %}
 				<div class="col-md-3 text-center">
-
+				<a href="{{ path ('app_product', { slug : product.slug })}}" class="text-decoration-none">
                 <img src="/uploads/{{ product.illustration }}" class="img-fluid" alt="" >
 
-                <strong>{{ product.name }}</strong>
-                <span class="d-block">{{ product.pricewt}}</span>
+                <span class="d-block fw-bold text-black">{{ product.name }}</span>
+				</a>
+                <span class="d-block">{{ product.pricewt | price }}</span>
 					{# {{ dump(product) }} #}
 				</div>
 			{% endfor %}
