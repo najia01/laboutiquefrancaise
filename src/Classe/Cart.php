@@ -10,6 +10,7 @@ class Cart
     {
     }
 
+    // fonction permettant l'ajout d'un produit dans le panier 
     public function add($product)
     {
 
@@ -35,16 +36,19 @@ class Cart
         $session->set('cart', $cart);
     }
     
+    // fonction permettant la suppression totale du panier
     public function remove()
     {
        return $this->requestStack->getSession()->remove('cart');
     }
 
+    // fonction permettant de retourner le panier
     public function getCart()
     {
         return $this->requestStack->getSession()->get('cart');
     }
 
+    // fonction permettant la suppression d'une qté d'un produit dans le panier
     public function decrease($id)
     {
         $session = $this->requestStack->getSession();
@@ -62,6 +66,7 @@ class Cart
         
     }
 
+    // fonction permettant de retourner le nombre total  dans le panier
     public function fullQuantity()
     {
         $session = $this->requestStack->getSession();
@@ -78,6 +83,7 @@ class Cart
         return $quantity;
     }
 
+    // fonction permettant d'avoir le prix total avec TVA  d'un produit dans le panier
     public function getTotalWt()
     {
         $session = $this->requestStack->getSession();
