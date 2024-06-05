@@ -11,6 +11,8 @@ class ProductController extends AbstractController
 {
     #[Route('/produit/{slug}', name: 'app_product')]
     public function index($slug, ProductRepository $productRepository): Response
+
+    // public function index( #[MapEntity(mapping: ['slug' => 'slug'])] Product $product): Response
     {
         $product = $productRepository->findOneBySlug($slug);
 
