@@ -8,8 +8,9 @@
 	)}}
 	<br>
     <br>
-	<span>Passée le
-		{{ order.createdAt|date('d/m/y') }}</span>
+	<span>Passée le {{ order.createdAt|date('d/m/y') }}</span> <br>
+	<span>Stripe Session Id {{ order.stripeSessionId }}</span> <br>
+		
 
 
 	<div class="row my-4">
