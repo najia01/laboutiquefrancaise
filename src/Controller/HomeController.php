@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Classe\Mail;
+use App\Repository\HeaderRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -10,12 +11,13 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(HeaderRepository $headerRepository, ProductRepository $productRepository): Response
     {
-        
-       $mail = new Mail();
-       $mail->send('laboutiquefrench@yopmail.com','Gina Doe','Bonjour test de ma classe mail', 'mon premier email' );
+              
+        return $this->render('home/index.html.twig',[
+            'headers'=> $headerRepository->findAll(),
+            'productsInHomepage'=> $productRepository->findByIsHomepage(true),
 
-        return $this->render('home/index.html.twig');
+        ]);
     }
 }
