@@ -1,6 +1,17 @@
 {% extends '@!EasyAdmin/layout.html.twig' %}
 
 {% block main %}
+
+<h2>Agir sur la commande</h2>
+{% if order.state != 1 %}
+    <a href="{{ current_url }}&state=3" class="{% if order.state == 3 %}d-none{% endif %} btn btn-success">Commande en cours de préparation</a>
+    <a href="{{ current_url }}&state=4" class="{% if order.state == 4 %}d-none{% endif %} btn btn-warning">Commande expédiée</a>
+    <a href="{{ current_url }}&state=5" class="{% if order.state == 5 %}d-none{% endif %} btn btn-danger">Commande annulée</a>
+  {% else %}
+    <p>Vous ne pouvez pas agir sur une commande qui n'est pas encore payée.</p>
+{% endif %}
+
+<hr>
  <small><a target="_blank" href="{{ path ('app_invoice_admin', { id_order: order.id })}}" class="btn btn-secondary btn-sm">Voir/Imprimer la facture</a></small>
 
 	<h3 class="mt-2">Commande n°

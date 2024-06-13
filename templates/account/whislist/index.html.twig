@@ -14,7 +14,29 @@
 </div>
 
 <div class="col-md-9">
-<h5>Ma liste de souhaits</h5>
+<h5>Ma liste de souhait ({{ app.user.whislists | length }})</h5>
+{% if app.user.whislists | length > 0 %}
+
+<div class="row">
+{% for product in app.user.whislists %}
+    <div class="col-md-3 text-center">
+				<a href="{{ path ('app_product', { slug : product.slug })}}" class="text-decoration-none">
+                <img src="/uploads/{{ product.illustration }}" class="img-fluid" alt="" >
+
+                <span class="d-block fw-bold text-black">{{ product.name }}</span>
+				</a>
+                <span class="d-block">{{ product.pricewt | price }}</span>
+
+                <a href="{{ path('app_account_whislist_remove', { id: product.id }) }}" class="small text-secondary">Supprimer</a>
+					{# {{ dump(product) }} #}
+				</div>
+{% endfor %}
+</div>
+
+{% else %}
+    Vous n'avez pas de produit dans votre liste de souhait.
+ 
+{% endif %}
 
 
 </div>
